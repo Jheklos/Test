@@ -1,0 +1,125 @@
+
+    <!DOCTYPE html>
+    <html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <title>Relatório de Resultados SVM</title>
+        <style>
+            body { font-family: Arial, sans-serif; margin: 20px; background-color: #fdfdfd; }
+            .container { max-width: 1000px; margin: 0 auto; background-color: #fff; padding: 20px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+            .metrics-table { width: 100%; border-collapse: collapse; margin: 25px 0; }
+            .metrics-table th, .metrics-table td { border: 1px solid #ddd; padding: 12px; text-align: left; vertical-align: middle; }
+            .metrics-table th { background-color: #0056b3; color: white; text-align: center; }
+            .result-section { background-color: #f8f9fa; padding: 20px; border-radius: 5px; margin: 20px 0; border-left: 5px solid #0056b3; }
+            h1, h2 { color: #333; border-bottom: 2px solid #0056b3; padding-bottom: 10px; }
+            .best-result { background-color: #e7f3e7; }
+            .worst-result { background-color: #fdeeee; }
+            .kernel-summary-table td:nth-child(2) { color: #28a745; font-weight: bold; }
+            .kernel-summary-table td:nth-child(3) { color: #dc3545; font-weight: bold; }
+            .cm-image { max-width: 350px; display: block; margin: 10px auto; }
+            .cm-container { display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap; }
+            .cm-item { text-align: center; margin: 10px; }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Relatório de Avaliação de Parâmetros SVM</h1>
+            <div class="result-section">
+                <h2>Resultados Globais</h2>
+                <p>Estes são os melhores e piores resultados encontrados em todas as combinações de kernels e parâmetros.</p>
+                <table class="metrics-table">
+                    <tr class="best-result">
+                        <td colspan="2" style="text-align:center; font-weight:bold;">Melhor Desempenho Geral</td>
+                    </tr>
+                    <tr class="best-result"><td>Melhor Kernel</td><td>Linear</td></tr>
+                    <tr class="best-result"><td>Acurácia Média de Treino</td><td>100.00% &plusmn; 0.00%</td></tr>
+                    <tr class="best-result"><td>Acurácia Média de Teste</td><td>68.16% &plusmn; 12.02%</td></tr>
+                    <tr class="best-result"><td>Train time (seconds)</td>
+                        <td>4.36 &plusmn; 0.82</td></tr>
+                    <tr class="best-result"><td>Test time (seconds)</td>
+                        <td>0.66 &plusmn; 0.29</td></tr>
+                    <tr class="best-result"><td>Configuração (C, &gamma;)</td><td>(1.000, 1.000)</td></tr>
+                    <tr class="best-result"><td colspan="2"><img class="cm-image" src="svm_report_images/cm_global_best.png" alt="Matriz de Confusão - Melhor Global"></td></tr>
+                    
+                    <tr class="worst-result">
+                        <td colspan="2" style="text-align:center; font-weight:bold;">Pior Desempenho Geral</td>
+                    </tr>
+                    <tr class="worst-result"><td>Pior Kernel</td><td>Sigmoid</td></tr>
+                    <tr class="worst-result"><td>Acurácia Média de Treino</td><td>50.16% &plusmn; 0.10%</td></tr>
+                    <tr class="worst-result"><td>Acurácia Média de Teste</td><td>48.56% &plusmn; 0.87%</td></tr>
+                    <tr class="worst-result"><td>Train time (seconds)</td>
+                        <td>12.88 &plusmn; 1.79</td></tr>
+                    <tr class="worst-result"><td>Test time (seconds)</td>
+                        <td>1.44 &plusmn; 0.16</td></tr>
+                    <tr class="worst-result"><td>Configuração (C, &gamma;)</td><td>(1.000, 1.000)</td></tr>
+                    <tr class="worst-result"><td colspan="2"><img class="cm-image" src="svm_report_images/cm_global_worst.png" alt="Matriz de Confusão - Pior Global"></td></tr>
+                </table>
+            </div>
+            <div class="result-section">
+                <h2>Resumo por Kernel</h2>
+                
+                <h3>Kernel: <strong>Linear</strong></h3>
+                <table class="metrics-table kernel-summary-table">
+                    <tr><th>Desempenho</th><th>Acurácia de Teste</th><th>Matriz de Confusão Média</th></tr>
+                    <tr>
+                        <td>Melhor</td>
+                        <td>68.16% &plusmn; 12.02%</td>
+                        <td><img class="cm-image" src="svm_report_images/cm_kernel_Linear_best.png" alt="MC Melhor Linear"></td>
+                    </tr>
+                    <tr>
+                        <td>Pior</td>
+                        <td>68.16% &plusmn; 12.02%</td>
+                        <td><img class="cm-image" src="svm_report_images/cm_kernel_Linear_worst.png" alt="MC Pior Linear"></td>
+                    </tr>
+                </table>
+                
+                <h3>Kernel: <strong>Polynomial</strong></h3>
+                <table class="metrics-table kernel-summary-table">
+                    <tr><th>Desempenho</th><th>Acurácia de Teste</th><th>Matriz de Confusão Média</th></tr>
+                    <tr>
+                        <td>Melhor</td>
+                        <td>65.86% &plusmn; 9.78%</td>
+                        <td><img class="cm-image" src="svm_report_images/cm_kernel_Polynomial_best.png" alt="MC Melhor Polynomial"></td>
+                    </tr>
+                    <tr>
+                        <td>Pior</td>
+                        <td>65.86% &plusmn; 9.78%</td>
+                        <td><img class="cm-image" src="svm_report_images/cm_kernel_Polynomial_worst.png" alt="MC Pior Polynomial"></td>
+                    </tr>
+                </table>
+                
+                <h3>Kernel: <strong>Radial Basis Function</strong></h3>
+                <table class="metrics-table kernel-summary-table">
+                    <tr><th>Desempenho</th><th>Acurácia de Teste</th><th>Matriz de Confusão Média</th></tr>
+                    <tr>
+                        <td>Melhor</td>
+                        <td>48.75% &plusmn; 1.07%</td>
+                        <td><img class="cm-image" src="svm_report_images/cm_kernel_Radial_Basis_Function_best.png" alt="MC Melhor Radial Basis Function"></td>
+                    </tr>
+                    <tr>
+                        <td>Pior</td>
+                        <td>48.75% &plusmn; 1.07%</td>
+                        <td><img class="cm-image" src="svm_report_images/cm_kernel_Radial_Basis_Function_worst.png" alt="MC Pior Radial Basis Function"></td>
+                    </tr>
+                </table>
+                
+                <h3>Kernel: <strong>Sigmoid</strong></h3>
+                <table class="metrics-table kernel-summary-table">
+                    <tr><th>Desempenho</th><th>Acurácia de Teste</th><th>Matriz de Confusão Média</th></tr>
+                    <tr>
+                        <td>Melhor</td>
+                        <td>48.56% &plusmn; 0.87%</td>
+                        <td><img class="cm-image" src="svm_report_images/cm_kernel_Sigmoid_best.png" alt="MC Melhor Sigmoid"></td>
+                    </tr>
+                    <tr>
+                        <td>Pior</td>
+                        <td>48.56% &plusmn; 0.87%</td>
+                        <td><img class="cm-image" src="svm_report_images/cm_kernel_Sigmoid_worst.png" alt="MC Pior Sigmoid"></td>
+                    </tr>
+                </table>
+                
+            </div>
+        </div>
+    </body>
+    </html>
+    
